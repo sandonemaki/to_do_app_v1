@@ -1,5 +1,11 @@
 <h1>やること一覧</h1>
-
-<% @tasks.each do |task| %>
-  <%= task.content %>
-<% end %>
+<div>
+  <% @tasks.each do |task| %>
+    <div class="tasks-index-item">
+      <%= task.content %>
+      <div class="task-time">
+        <%= task.created_at %>
+      </div>
+    </div>
+  <% end %>
+</div>
