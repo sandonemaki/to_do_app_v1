@@ -4,8 +4,12 @@ class TasksController < ApplicationController
   end
 
   def new
+
   end
 
   def create
+    @task = Task.new(content: params[:content])
+    @task.save
+    redirect_to("/tasks/index")
   end
 end
