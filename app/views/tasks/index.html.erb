@@ -6,6 +6,12 @@
       <div class="task-time">
         <%= task.created_at %>
       </div>
+      <div class="task-menus">
+        <%= link_to("がんばった", "/tasks/#{task.id}/done", {method: :put}) %>
+        <%= link_to("編集", "/tasks/#{task.id}/edit") %>
+        <%= link_to("削除", "/tasks/#{task.id}/destroy", {method: :post}) %>
+      </div>
+
     </div>
   <% end %>
   <div>
