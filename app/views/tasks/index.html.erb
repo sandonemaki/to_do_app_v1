@@ -9,12 +9,11 @@
 
     <!-- タスクカード -->
     <section class="ly_card_wrapper">
-      <% @tasks.each do |task| %>
+      <% tasks.each do |task| %>
         <div class="bl_card">
           <div class="bl_card_content">
             <div class=el_card_icon>
               <img src="<%= "/#{task.image_status}" %>", class="el_card_icon__img">
-              <%# <img src="/undone.png", class="el_card_icon__img"> %>
             </div><!-- /el_card_icon -->
             <h2 class="el_card_taskname">
               <%= task.content %>

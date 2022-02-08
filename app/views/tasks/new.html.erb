@@ -13,14 +13,14 @@
       <div class="ly_card_wrapper">
         <!-- テキスト入力部分と登録ボタン -->
         <div class="bl_input_card">
-          <% @task.errors[:content].each do |message| %>
+          <% task.errors[:content].each do |message| %>
             <div class="form-error">
               <%= message %>
             </div>
           <% end %>
           <!-- テキスト入力エリア -->
           <div class="el_input_form">
-            <textarea name="content" style="width: 100%; height: 100%;"><%= @task.content %></textarea>
+            <textarea name="content" style="width: 100%; height: 100%;"><%= task.content %></textarea>
           </div>
 
           <!-- 保存ボタン -->

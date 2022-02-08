@@ -1,51 +1,54 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.where(done_flag: 0).order(created_at: :desc)
-    render("index")
+    tasks = Task.where(done_flag: 0).order(created_at: :desc)
+    render("index", locals: {tasks: tasks})
   end
 
   def fin_index
-    @tasks = Task.where(done_flag: 1).order(created_at: :desc)
+    tasks = Task.where(done_flag: 1).order(created_at: :desc)
+    render("fin_index", locals: {tasks: tasks})
   end
 
   def new
-    @task = Task.new
+    task = Task.new
+    render("new", locals: {task: task})
   end
 
   def create
-    @task = Task.new(
+    task = Task.new(
       content: params[:content],
       done_flag: 0,
       image_status: "undone.png"
     )
-    if @task.save
-      redirect_to("/")
+    if task.save
+      redirect_to("/", locals: {task: task})
     else
-      p @task.errors[:content]
-      render("tasks/new")
+      p task.errors[:content]
+      render("new", locals: {task: task})
     end
   end
 
   def edit
-    @task = Task.find_by(id: params[:id])
+    task = Task.find_by(id: params[:id])
+    render("edit", locals: {task: task})
   end
 
   def update
-    @task = Task.find_by(id: params[:id])
-    @task.content = params[:content]
-    if @task.save
+    task = Task.find_by(id: params[:id])
+    task.content = params[:content]
+    if task.save
       flash[:notice]="やることを編集しました"
-      redirect_to("/")
+      redirect_to("/", locals: {task: task})
     else
-      render("tasks/edit")
+      render("edit", locals: {task: task})
     end
   end
 
   def destroy
-    @task = Task.find_by(id: params[:id])
-    @task.destroy
+    task = Task.find_by(id: params[:id])
+    task.destroy
     flash[:notice]="タスクを削除しました"
-    redirect_to("/")
+    redirect_to("/", locals: {task: task})
   end
 
   def done
