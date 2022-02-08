@@ -1,14 +1,36 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="ja">
   <head>
-    <title>ToDoAppV1</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Line ToDoList</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
-
+  <header class="ly_header">
+    <div class="ly_header_inner">
+      <h1 class="bl_logo__head">
+        <a href="/">
+          <img src="/todo_logo.png" alt="1line to do list" class="bl_logo__img">
+        </a>
+      </h1><!-- /bl_logo__head -->
+      <!-- ヘッダー -->
+      <div class="ly_header_nav">
+        <ul class="bl_header_nav">
+          <li class="el_header_navitem">
+            <%= link_to("やること一覧", "/") %>
+          </li>
+          <li class="el_header_navitem">
+            <%= link_to("がんばった一覧", "/tasks/fin_index") %>
+          </li>
+        </ul><!-- /bl_header_nav-->
+      </div><!-- /ly_header_nav -->
+    </div><!-- /ly_header_inner -->
+  </header>
   <body>
     <%= yield %>
   </body>

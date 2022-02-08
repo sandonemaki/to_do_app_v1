@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "tasks/index" => "tasks#index"
+  # get "tasks/index" => "tasks#index"
   get "tasks/new" => "tasks#new"
   post "tasks/create" => "tasks#create"
   get "tasks/:id/edit" => "tasks#edit"
@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     put :undone, on: :member
     get :fin_index, on: :collection
   end
+
+  root to: "tasks#index"
 end

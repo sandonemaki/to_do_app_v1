@@ -1,6 +1,11 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.where(done_flag: 0).order(created_at: :desc)
+    render("index")
+  end
+
+  def fin_index
+    @tasks = Task.where(done_flag: 1).order(created_at: :desc)
   end
 
   def new
@@ -11,11 +16,12 @@ class TasksController < ApplicationController
     @task = Task.new(
       content: params[:content],
       done_flag: 0,
-      status_image: "undone.png"
+      image_status: "undone.png"
     )
     if @task.save
-      redirect_to("/tasks/index")
+      redirect_to("/")
     else
+      p @task.errors[:content]
       render("tasks/new")
     end
   end
@@ -29,7 +35,7 @@ class TasksController < ApplicationController
     @task.content = params[:content]
     if @task.save
       flash[:notice]="やることを編集しました"
-      redirect_to("/tasks/index")
+      redirect_to("/")
     else
       render("tasks/edit")
     end
@@ -39,23 +45,26 @@ class TasksController < ApplicationController
     @task = Task.find_by(id: params[:id])
     @task.destroy
     flash[:notice]="タスクを削除しました"
-    redirect_to("/tasks/index")
+    redirect_to("/")
   end
 
   def done
     task = Task.find_by(id: params[:id])
     task.done_flag = 1
+    task.image_status = "done.png"
     if task.save
       # @tasks = Task.where(done_flag: 0)
-      redirect_to("/tasks/index")
+      redirect_to("/")
     end
   end
 
   def undone
-    @task = Task.find_by(params[:id])
-    @undone_task = UndoneTask.new(conatent: @task.content)
-    @undone_task.save
-    @task.delete
-    render("taskes/fin_index")
+    task = Task.find_by(id: params[:id])
+    task.done_flag = 0
+    task.image_status = "undone.png"
+    if task.save!
+      puts "保存"
+      redirect_to("/tasks/fin_index")
+    end
   end
 end

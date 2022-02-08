@@ -3,7 +3,7 @@
   <div class="ly_card_article">
     <div class="bl_maintitle">
       <h1 class="el_lv1hedding">
-        やること一覧
+        がんばった一覧
       </h1>
     </div><!-- /bl_maintitle -->
 
@@ -14,7 +14,6 @@
           <div class="bl_card_content">
             <div class=el_card_icon>
               <img src="<%= "/#{task.image_status}" %>", class="el_card_icon__img">
-              <%# <img src="/undone.png", class="el_card_icon__img"> %>
             </div><!-- /el_card_icon -->
             <h2 class="el_card_taskname">
               <%= task.content %>
@@ -27,10 +26,7 @@
             </div><!-- /bl_card_date -->
             <ul class="bl_card_nav">
               <li>
-                <%= link_to("がんばった", "/tasks/#{task.id}/done", {class: "el_card_navitem", method: :put}) %>
-              </li>
-              <li>
-                <%= link_to("編集", "/tasks/#{task.id}/edit", class: "el_card_navitem") %>
+                <%= link_to("未完了", "/tasks/#{task.id}/undone", {class: "el_card_navitem", method: :put}) %>
               </li>
               <li>
                 <%= link_to("削除", "/tasks/#{task.id}/destroy", {class: "el_card_navitem", method: :post}) %>
@@ -39,14 +35,6 @@
           </div><!-- /bl_content_sub -->
         </div><!-- /bl_card -->
       <% end %><!-- /タスクカードループ -->
-
-      <!-- 新規タスクボタン -->
-      <%= link_to("/tasks/new", class: "bl_newcard") do %>
-        <div class="bl_newcard_content">
-          <h2 class="el_newcard_plusicon">+</h2>
-        </div><!-- /bl_newcard_content-->
-        <h2 class="el_newcard_New">New</h2>
-      <% end %><!-- /bl_newcard -->
 
     </section><!-- /ly_card_wrapper -->
   </div><!-- /ly_card_article -->

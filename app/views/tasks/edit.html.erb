@@ -1,14 +1,35 @@
-<h1>編集する</h1>
-<%= form_tag("/tasks/#{@task.id}/update") do %>
-  <div class="form">
-    <div class="form-body">
-      <% @task.errors.full_messages.each do |message| %>
-      <div>
-        <%= message %>
-      </div>
+<!-- メインコンテンツ -->
+<main class="ly_main">
+  <div class="ly_card_article">
+    <div class="bl_maintitle">
+      <h1 class="el_lv1hedding">
+        編集する
+      </h1>
+    </div><!-- /bl_maintitle -->
+
+    <!-- タスクカード -->
+    <%= form_tag("/tasks/#{@task.id}/update") do %>
+      <!-- 白ベタ全体 -->
+      <div class="ly_card_wrapper">
+        <!-- テキスト入力部分と編集ボタン -->
+        <div class="bl_input_card">
+          <% @task.errors[:content].each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <!-- テキスト入力エリア -->
+          <div class="el_input_form">
+            <textarea name="content" style="width: 100%; height: 100%;"><%= @task.content %></textarea>
+          </div>
+
+          <!-- 保存ボタン -->
+          <div class="bl_save__btn">
+            <input type="submit" value="保存" class="save__btn__radius">
+          </div><!-- /bl_save__btn -->
+        </div><!-- /bl_input_card -->
+      </div><!-- /ly_card_wrapper -->
     <% end %>
-    <textarea name="content"><%= @task.content %></textarea>
-    <input type="submit" value="保存">
-  </div>
-</div>
-<% end %>
+  </div><!-- ly_card_article -->
+</main><!-- /ly_main -- >
+
