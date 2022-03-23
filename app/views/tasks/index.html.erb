@@ -9,30 +9,34 @@
 
     <!-- タスクカード -->
     <section class="ly_card_wrapper">
-      <% tasks.each do |task| %>
+      <%# <% raise tasks.tasks_ary.inspect %>
+      <%# <% raise tasks.inspect %>
+      <% hash = {} %>
+      <% tasks.tasks_ary.each do |task_ary| %>
+        <% hash = {:id => task_ary[0], :image_status => task_ary[1], :content => task_ary[2], :created_at => task_ary[3]} %>
         <div class="bl_card">
           <div class="bl_card_content">
             <div class=el_card_icon>
-              <img src="<%= "/#{task.image_status}" %>", class="el_card_icon__img">
+              <img src="<%= "/#{hash[:image_status]}" %>", class="el_card_icon__img">
             </div><!-- /el_card_icon -->
             <h2 class="el_card_taskname">
-              <%= task.content %>
+              <%= hash[:content] %>
             </h2>
           </div><!-- /bl_card_content -->
           <!-- 投稿時間とタスクのリンク先 -->
           <div class="bl_card_content_sub">
             <div class="bl_card_date datetime">
-              <%= task.created_at.strftime("%Y/%m/%d %H:%M") %>
+              <%= hash[:created_at].strftime("%Y/%m/%d %H:%M") %>
             </div><!-- /bl_card_date -->
             <ul class="bl_card_nav">
               <li>
-                <%= link_to("がんばった", "/tasks/#{task.id}/done", {class: "el_card_navitem", method: :put}) %>
+                <%= link_to("がんばった", "/tasks/#{hash[:id]}/done", {class: "el_card_navitem", method: :put}) %>
               </li>
               <li>
-                <%= link_to("編集", "/tasks/#{task.id}/edit", class: "el_card_navitem") %>
+                <%= link_to("編集", "/tasks/#{hash[:id]}/edit", class: "el_card_navitem") %>
               </li>
               <li>
-                <%= link_to("削除", "/tasks/#{task.id}/destroy", {class: "el_card_navitem", method: :post}) %>
+                <%= link_to("削除", "/tasks/#{hash[:id]}/destroy", {class: "el_card_navitem", method: :post}) %>
               </li>
             </ul><!-- /bl_card_nav -->
           </div><!-- /bl_content_sub -->
