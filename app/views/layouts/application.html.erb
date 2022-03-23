@@ -32,6 +32,13 @@
     </div><!-- /ly_header_inner -->
   </header>
   <body>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

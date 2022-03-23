@@ -23,7 +23,7 @@ body {
 }
 
 .form-error {
-  color: #eb8334;
+  color: rgb(251, 170, 88);
   padding-bottom: 8px;
   font-size: 1.5rem;
 }
@@ -44,6 +44,44 @@ body {
   /* line-height: -0.5; */
   padding-top: 0.2rem;
 }
+
+
+/*-------------------------------------------
+ * フォーム
+ * -------------------------------------------*/
+
+input, select, textarea {
+	padding: 5px 10px;
+	/* 枠線を消す */
+  border: none;
+  /* 右下の//(サイズ変更機能)を消す */
+  resize: none;
+  /* フォーカスした際の青い枠線を消す */
+  outline: none;
+  /* widthを100%にしておくことで、レスポンシブ対応ができます。 */
+  /* width: 100%; */
+}
+
+textarea:focus {
+	background-color: #f7f8fa;
+}
+
+/*-------------------------------------------
+ * フラッシュ
+ * -------------------------------------------*/
+
+.flash {
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+  background: rgb(251, 170, 88);
+  color: black
+  top: 70px;
+  width: 100%
+  border-radius: 0 0 2px 2px;
+  font-size: 1.4rem;
+}
+
 /*-------------------------------------------
  * レイアウト
  * -------------------------------------------*/
@@ -210,22 +248,6 @@ body {
   width: 100%;
   background: white;
   padding: 20px 16px;
-}
-
-input, select, textarea {
-	padding: 5px 10px;
-	/* 枠線を消す */
-  border: none;
-  /* 右下の//(サイズ変更機能)を消す */
-  resize: none;
-  /* フォーカスした際の青い枠線を消す */
-  outline: none;
-  /* widthを100%にしておくことで、レスポンシブ対応ができます。 */
-  /* width: 100%; */
-}
-
-textarea:focus {
-	background-color: #f7f8fa;
 }
 
 .el_input_form {
