@@ -96,7 +96,7 @@ class TasksController < ApplicationController
     task.done_flag = 0
     task.image_status = "undone.png"
     if task.save!
-      puts "保存"
+      # puts "保存"
       redirect_to("/tasks/fin_index")
     else
       flash[:notice] = "保存に失敗しました"
